@@ -1,79 +1,44 @@
 "use client";
 
-import { Player } from "@remotion/player";
-import type { NextPage } from "next";
-import React, { useMemo, useState } from "react";
-import { Main } from "../remotion/MyComp/Main";
-import {
-  CompositionProps,
-  defaultMyCompProps,
-  DURATION_IN_FRAMES,
-  VIDEO_FPS,
-  VIDEO_HEIGHT,
-  VIDEO_WIDTH,
-} from "../types/constants";
-import { z } from "zod";
-import { RenderControls } from "../components/RenderControls";
-import { Tips } from "../components/Tips/Tips";
-import { Spacing } from "../components/Spacing";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-const container: React.CSSProperties = {
-  maxWidth: 768,
-  margin: "auto",
-  marginBottom: 20,
-};
+const LINKS = [
+  {
+    href: "/example-one",
+    label: "Example One",
+  },
+  {
+    href: "/example-two",
+    label: "Example Two",
+  },
+];
 
-const outer: React.CSSProperties = {
-  borderRadius: "var(--geist-border-radius)",
-  overflow: "hidden",
-  boxShadow: "0 0 200px rgba(0, 0, 0, 0.15)",
-  marginBottom: 40,
-  marginTop: 60,
-};
-
-const player: React.CSSProperties = {
-  width: "100%",
-};
-
-const Home: NextPage = () => {
-  const [text, setText] = useState<string>(defaultMyCompProps.title);
-
-  const inputProps: z.infer<typeof CompositionProps> = useMemo(() => {
-    return {
-      title: text,
-    };
-  }, [text]);
+const HomePage = () => {
+  const router = useRouter();
 
   return (
-    <div>
-      <div style={container}>
-        <div className="cinematics" style={outer}>
-          <Player
-            component={Main}
-            inputProps={inputProps}
-            durationInFrames={DURATION_IN_FRAMES}
-            fps={VIDEO_FPS}
-            compositionHeight={VIDEO_HEIGHT}
-            compositionWidth={VIDEO_WIDTH}
-            style={player}
-            controls
-            autoPlay
-            loop
-          />
+    <div className="container h-full ">
+      <div className="h-full flex flex-col items-center justify-center space-y-8">
+        <div>
+          <h1 className="text-6xl font-bold font-serif">Remotion Test</h1>
+          <p className="text-primary/70 bg">
+            This codebase aims at learning how the Remotion library works
+          </p>
         </div>
-        <RenderControls
-          text={text}
-          setText={setText}
-          inputProps={inputProps}
-        ></RenderControls>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Tips></Tips>
+        <div className="flex flex-col space-y-2">
+          {LINKS.map((link) => {
+            return (
+              <Button onClick={() => router.push(link.href)}>
+                <ArrowRight className="h-4 w-4 m-1" /> {link.label}
+              </Button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

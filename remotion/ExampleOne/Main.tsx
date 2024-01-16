@@ -6,12 +6,12 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { CompositionProps } from "../../types/constants";
-import { NextLogo } from "./NextLogo";
+import { CompositionProps } from "@/remotion/ExampleOne/types/constants";
+import { NextLogo } from "./components/NextLogo";
 import { loadFont, fontFamily } from "@remotion/google-fonts/Inter";
 import React, { useMemo } from "react";
-import { Rings } from "./Rings";
-import { TextFade } from "./TextFade";
+import { Rings } from "./components/Rings";
+import { TextFade } from "./components/TextFade";
 
 loadFont();
 

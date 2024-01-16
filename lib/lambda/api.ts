@@ -4,9 +4,9 @@ import {
   ProgressRequest,
   ProgressResponse,
   RenderRequest,
-} from "../types/schema";
-import { CompositionProps } from "../types/constants";
-import { ApiResponse } from "../helpers/api-response";
+} from "../../remotion/ExampleOne/types/schema";
+import { CompositionProps } from "@/remotion/ExampleOne/types/constants";
+import { ApiResponse } from "@/lib/helpers/api-response";
 
 const makeRequest = async <Res>(
   endpoint: string,
