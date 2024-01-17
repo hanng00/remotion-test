@@ -5,7 +5,7 @@ import {
 } from "@remotion/lambda/client";
 import { DISK, RAM, REGION, TIMEOUT } from "../../../../config.mjs";
 import { executeApi } from "../../../../lib/helpers/api-response";
-import { ProgressRequest, ProgressResponse } from "../../../../remotion/ExampleOne/types/schema";
+import { ProgressRequest, ProgressResponse } from "../../../../src/ExampleOne/types/schema";
 
 export const POST = executeApi<ProgressResponse, typeof ProgressRequest>(
   ProgressRequest,

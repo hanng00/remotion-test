@@ -5,7 +5,7 @@ import {
 } from "@remotion/lambda/client";
 import { DISK, RAM, REGION, SITE_NAME, TIMEOUT } from "../../../../config.mjs";
 import { executeApi } from "../../../../lib/helpers/api-response";
-import { RenderRequest } from "../../../../remotion/ExampleOne/types/schema";
+import { RenderRequest } from "../../../../src/ExampleOne/types/schema";
 
 export const POST = executeApi<RenderMediaOnLambdaOutput, typeof RenderRequest>(
   RenderRequest,
