@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { useCallback, useMemo, useState } from "react";
 import { getProgress, renderVideo } from "@/lib/lambda/api";
-import { CompositionProps } from "@/remotion/ExampleOne/types/constants";
+import { CompositionProps } from "@/src/ExampleOne/types/constants";
 
 export type State =
   | {

@@ -4,8 +4,8 @@ import {
   ProgressRequest,
   ProgressResponse,
   RenderRequest,
-} from "../../remotion/ExampleOne/types/schema";
-import { CompositionProps } from "@/remotion/ExampleOne/types/constants";
+} from "../../src/ExampleOne/types/schema";
+import { CompositionProps } from "@/src/ExampleOne/types/constants";
 import { ApiResponse } from "@/lib/helpers/api-response";
 
 const makeRequest = async <Res>(
