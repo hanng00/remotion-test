@@ -5,8 +5,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { Title } from "./Title";
-import { Bar } from "./Bar";
+import { Title } from "../components/Title";
+import { Bar } from "../components/Bar";
 
 const BAR_DATA = [
   {
@@ -77,6 +77,7 @@ export const Scene2: React.FC = () => {
         {BAR_DATA.map((barData) => {
           return (
             <Bar
+              key={barData.rank}
               color={barData.color}
               endWidth={width / 2 - barData.endWidthOffset}
               rank={barData.rank}

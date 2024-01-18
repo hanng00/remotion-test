@@ -1,8 +1,9 @@
 import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
-import { Gradient } from "./Gradient";
-import { FourFaces } from "./FourFaces";
-import { GradientCircle } from "./GradientCircle";
-import { Wrapped } from "./Wrapped";
+import { Gradient } from "../components/Gradient";
+import { FourFaces } from "../components/FourFaces";
+import { GradientCircle } from "../components/GradientCircle";
+import { Wrapped } from "../components/Wrapped";
+import { VIDEO_FPS } from "../types/constants";
 
 export const Scene1: React.FC = () => {
   const { height } = useVideoConfig();
@@ -21,22 +22,22 @@ export const Scene1: React.FC = () => {
     <>
       <AbsoluteFill>
         <Gradient height={height} />
-        <Sequence from={0} durationInFrames={Infinity}>
+        <Sequence from={VIDEO_FPS * 0} durationInFrames={Infinity}>
           <FourFaces image={theWeekendImage} />
         </Sequence>
-        <Sequence from={30} durationInFrames={Infinity}>
+        <Sequence from={VIDEO_FPS * 1} durationInFrames={Infinity}>
           <FourFaces image={taylorSwiftImage} />
         </Sequence>
-        <Sequence from={60} durationInFrames={Infinity}>
+        <Sequence from={VIDEO_FPS * 2} durationInFrames={Infinity}>
           <FourFaces image={samSmithImage} />
         </Sequence>
-        <Sequence from={90} durationInFrames={Infinity}>
+        <Sequence from={VIDEO_FPS * 3} durationInFrames={Infinity}>
           <FourFaces image={adeleImage} />
         </Sequence>
-        <Sequence from={120} durationInFrames={Infinity}>
+        <Sequence from={VIDEO_FPS * 4} durationInFrames={Infinity}>
           <GradientCircle />
         </Sequence>
-        <Sequence from={150} durationInFrames={Infinity}>
+        <Sequence from={VIDEO_FPS * 5} durationInFrames={Infinity}>
           <Wrapped />
         </Sequence>
       </AbsoluteFill>

@@ -6,10 +6,10 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { Gradient } from "./Gradient";
-import { Album, COVER_SIZE } from "./AlbumComponent";
-import { Title } from "./Title";
-import { Circle } from "./Circle";
+import { Gradient } from "../components/Gradient";
+import { Album, COVER_SIZE } from "../components/AlbumComponent";
+import { Title } from "../components/Title";
+import { Circle } from "../components/Circle";
 
 const CIRCLE_SIZE = 500;
 

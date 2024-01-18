@@ -1,16 +1,20 @@
 import { Composition } from "remotion";
 
+/* 
 import { Gradient } from "./ExampleTwo/components/Gradient";
-import { Scene3 } from "./ExampleTwo/components/Scene3";
-import { Scene2 } from "./ExampleTwo/components/Scene2";
-import { Main } from "./ExampleTwo/components/Main";
-import { Scene1 } from "./ExampleTwo/components/Scene1";
-import { Wrapped } from "./ExampleTwo/components/Wrapped";
+import { Scene3 } from "./ExampleTwo/scenes/Scene3";
+import { Scene2 } from "./ExampleTwo/scenes/Scene2";
+import { Scene1 } from "./ExampleTwo/scenes/Scene1";
+import { Wrapped } from "./ExampleTwo/components/Wrapped"; 
+*/
+
+import { Main } from "./ExampleTwo/Main";
 
 export const RemotionRoot: React.FC = () => {
+  // TODO : Figure out a smart way of importing compositions
   return (
     <>
-      <Composition
+      {/* <Composition
         id="Gradient"
         component={Gradient}
         width={720}
@@ -53,7 +57,7 @@ export const RemotionRoot: React.FC = () => {
           topSongName: "1989 (Taylor's Version)",
           topSongArtistName: "Taylor Swift",
         }}
-      />
+      /> */}
       <Composition
         id="Main"
         component={Main}
