@@ -1,3 +1,5 @@
+import { Img } from "remotion";
+
 export const COVER_SIZE = 400;
 
 const Cover: React.FC<React.HTMLProps<HTMLDivElement>> = ({
@@ -22,7 +24,7 @@ const Cover: React.FC<React.HTMLProps<HTMLDivElement>> = ({
 export const Album: React.FC<{ imageSrc: string }> = ({ imageSrc }) => {
   return (
     <Cover>
-      <img
+      <Img
         src={imageSrc}
         style={{
           height: COVER_SIZE,

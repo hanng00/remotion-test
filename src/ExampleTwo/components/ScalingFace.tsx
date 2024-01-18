@@ -1,4 +1,4 @@
-import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Img, interpolate, useCurrentFrame } from "remotion";
 
 export const ScalingFace: React.FC<{
   image: string;
@@ -16,7 +16,7 @@ export const ScalingFace: React.FC<{
         border: "10px solid black",
       }}
     >
-      <img
+      <Img
         src={image}
         style={{
           position: "absolute",

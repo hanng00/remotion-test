@@ -1,4 +1,4 @@
-import { useVideoConfig, AbsoluteFill, useCurrentFrame } from "remotion";
+import { AbsoluteFill, useCurrentFrame } from "remotion";
 
 const GRADIENT_VALUE = `linear-gradient(to bottom, green, yellow, red, black, purple, blue, green)`;
 

@@ -5,7 +5,6 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { Circle } from "./Circle";
 import { Gradient } from "./Gradient";
 
 export const GradientCircle: React.FC = () => {
