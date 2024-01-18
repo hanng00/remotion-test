@@ -26,8 +26,8 @@ const ExampleTwoPage = () => {
         <h1 className="text-3xl font-serif">Example Two</h1>
         <p className="max-w-md text-sm">Text</p>
       </div>
-      <div className="flex items-center justify-center w-full h-full">
-        <div className="h-full w-fit my-8 shadow border rounded-2xl overflow-hidden">
+      <div className="flex-grow w-full">
+        <div className="mx-auto h-full w-fit shadow border rounded-2xl overflow-hidden">
           <Player
             component={Main}
             durationInFrames={DURATION_IN_FRAMES}
@@ -35,7 +35,6 @@ const ExampleTwoPage = () => {
             compositionHeight={VIDEO_HEIGHT}
             compositionWidth={VIDEO_WIDTH}
             style={{
-              aspectRatio: VIDEO_WIDTH / VIDEO_HEIGHT,
               height: "100%",
               maxHeight: "100%",
             }}
@@ -46,8 +45,7 @@ const ExampleTwoPage = () => {
           />
         </div>
       </div>
-
-      <div className="flex flex-row flex-wrap py-4">
+      <div className="py-4">
         <div>
           Input artist name:
           <input
