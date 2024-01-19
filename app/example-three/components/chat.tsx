@@ -9,18 +9,12 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const TEMP_IMAGES = [
   "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&w=400",
   "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=400",
   "https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg?auto=compress&cs=tinysrgb&w=400",
 ];
-
-/* interface UploadedImage {
-  url: string | null;
-  hasBeenShown: boolean | null;
-} */
 
 export default function Chat() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,24 +31,7 @@ export default function Chat() {
     experimental_onFunctionCall: functionCallHandler,
   });
 
-  /* const [uploadedImage, setUploadedImage] = useState<UploadedImage>({
-    url: null,
-    hasBeenShown: null,
-  }); */
-
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    /* 
-    if (uploadedImage.url && !uploadedImage.hasBeenShown) {
-      chatRequestOptions = {
-        data: {
-          imageUrl: uploadedImage.url,
-        },
-      };
-      setUploadedImage((prevData) => ({
-        ...prevData,
-        hasBeenShown: true,
-      }));
-    } */
     var chatRequestOptions = {
       data: {
         currentIndex: currentIndex.toString(),
@@ -80,11 +57,9 @@ export default function Chat() {
   const userSentMessageCount = messages.filter((m) => m.role == "user").length;
   const canGenerateCarousel = userSentMessageCount >= REQUIRED_MESSAGE_COUNT;
   const handleCarouselGeneration = () => {
-    toast("You can now generate a carousel!");
-    // router.push("/example-three/carousel");
-    if (false) {
-      router.push("/example-three/carousel");
-    }
+    toast("Generating carousel..");
+    const messages_json = JSON.stringify(messages);
+    router.push(`/example-three/carousel?messages=${messages_json}`);
   };
 
   return (
@@ -92,10 +67,12 @@ export default function Chat() {
       {/* Header */}
       <div className="flex flex-rows justify-between w-full">
         <Button
-          className={cn(canGenerateCarousel && "bg-green-400")}
           size="sm"
           variant="default"
-          disabled={!canGenerateCarousel}
+          disabled={
+            // !canGenerateCarousel
+            false
+          }
           onClick={handleCarouselGeneration}
         >
           <Sparkles size={16} className="mr-2" />

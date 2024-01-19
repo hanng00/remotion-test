@@ -35,7 +35,7 @@ const MediaCarousel = ({
     if (api.selectedScrollSnap() !== currentIndex) {
       api.scrollTo(currentIndex);
     }
-  }, [api, currentIndex]);
+  }, [api, currentIndex, onIndexChange]);
 
   return (
     <div>
