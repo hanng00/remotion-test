@@ -1,9 +1,11 @@
+import { Suspense } from "react";
+import CarouselClient from "./components/client";
+
 const CarouselPage = () => {
   return (
-    <div>
-      <h1>Carousel Page</h1>
-      <p>Carousel Page</p>
-    </div>
+    <Suspense>
+      <CarouselClient />
+    </Suspense>
   );
 };
 

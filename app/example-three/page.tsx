@@ -1,7 +1,5 @@
 import Chat from "./components/chat";
 
-export const runtime = "edge";
-
 const ExampleThreePage = () => {
   return (
     <div className="container max-h-screen flex flex-col">
