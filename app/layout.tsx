@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Irja X Remotion",
+  title: "Irja",
   description: "The Diabild Carousel for the 21th Century",
 };
 

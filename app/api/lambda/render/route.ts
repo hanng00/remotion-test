@@ -3,9 +3,9 @@ import {
   renderMediaOnLambda,
   speculateFunctionName,
 } from "@remotion/lambda/client";
-import { DISK, RAM, REGION, SITE_NAME, TIMEOUT } from "../../../../config.mjs";
-import { executeApi } from "../../../../lib/helpers/api-response";
-import { RenderRequest } from "../../../../src/ExampleOne/types/schema";
+import { DISK, RAM, REGION, SITE_NAME, TIMEOUT } from "@/config.mjs";
+import { executeApi } from "@/lib/helpers/api-response";
+import { RenderRequest } from "@/lib/src/remotion/ExampleOne/types/schema";
 
 export const POST = executeApi<RenderMediaOnLambdaOutput, typeof RenderRequest>(
   RenderRequest,

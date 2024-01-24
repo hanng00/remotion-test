@@ -3,7 +3,7 @@
 import { Player } from "@remotion/player";
 import type { NextPage } from "next";
 import React, { useMemo, useState } from "react";
-import { Main } from "@/src/ExampleOne/Main";
+import { Main } from "@/lib/src/remotion/ExampleOne/Main";
 import {
   CompositionProps,
   defaultMyCompProps,
@@ -11,7 +11,7 @@ import {
   VIDEO_FPS,
   VIDEO_HEIGHT,
   VIDEO_WIDTH,
-} from "@/src/ExampleOne/types/constants";
+} from "@/lib/src/remotion/ExampleOne/types/constants";
 import { z } from "zod";
 import { RenderControls } from "./components/RenderControls";
 

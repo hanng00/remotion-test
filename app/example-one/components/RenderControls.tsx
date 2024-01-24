@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { useRendering } from "../../../lib/helpers/use-rendering";
-import { CompositionProps, COMP_NAME } from "../../../src/ExampleOne/types/constants";
+import { useRendering } from "@/lib/helpers/use-rendering";
+import { CompositionProps, COMP_NAME } from "@/lib/src/remotion/ExampleOne/types/constants";
 import { AlignEnd } from "./AlignEnd";
 import { Button } from "./Button/Button";
 import { InputContainer } from "./Container";

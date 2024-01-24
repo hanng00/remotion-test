@@ -1,7 +1,7 @@
 "use client";
 
 import { Player } from "@remotion/player";
-import { Main } from "@/src/ExampleTwo/Main";
+import { Main } from "@/lib/src/remotion/ExampleTwo/Main";
 import { useState, useMemo } from "react";
 import {
   MainProps,
@@ -10,7 +10,7 @@ import {
   VIDEO_FPS,
   VIDEO_HEIGHT,
   VIDEO_WIDTH,
-} from "@/src/ExampleTwo/types/constants";
+} from "@/lib/src/remotion/ExampleTwo/types/constants";
 import { z } from "zod";
 
 const ExampleTwoPage = () => {
