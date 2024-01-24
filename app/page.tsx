@@ -16,6 +16,10 @@ const LINKS = [
   {
     href: "/example-three",
     label: "Example Three",
+  },
+  {
+    href: "/example-four",
+    label: "Example Four",
   }
 ];
 
