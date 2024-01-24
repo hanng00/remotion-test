@@ -4,6 +4,7 @@ import { Inter as FontSans } from "next/font/google";
 import { Libre_Caslon_Text as FontSerif } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -43,7 +44,7 @@ export default function RootLayout({
           fontSerif.variable
         )}
       >
-        {children}
+        <ConvexClientProvider>{children}</ConvexClientProvider>
         <Toaster />
       </body>
     </html>

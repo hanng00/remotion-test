@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { BASIC_NARRATION_SCRIPT } from "./../constants";
+import { BASIC_NARRATION_SCRIPT } from "../constants";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";

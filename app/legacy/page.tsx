@@ -20,7 +20,7 @@ const LINKS = [
   {
     href: "/example-four",
     label: "Example Four",
-  }
+  },
 ];
 
 const HomePage = () => {
@@ -30,7 +30,9 @@ const HomePage = () => {
     <div className="container h-full">
       <div className="h-full flex flex-col items-center justify-center space-y-8">
         <div>
-          <h1 className="text-6xl font-bold font-serif text-center py-2">Irja</h1>
+          <h1 className="text-6xl font-bold font-serif text-center py-2">
+            Irja
+          </h1>
           <p className="text-primary/70 bg">
             Or, this codebase aims at learning how the Remotion library works
           </p>
