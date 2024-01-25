@@ -43,9 +43,9 @@ const MediaCarousel = ({
         <CarouselContent>
           {images.map((url, index) => (
             <CarouselItem key={index}>
-              <div>
+              <div className="flex items-center justify-center h-full w-full">
                 <img
-                  className="rounded-xl overflow-hidden shadow mx-auto"
+                  className="rounded-xl overflow-hidden shadow"
                   src={url}
                   alt="Uploaded Image"
                 />
@@ -53,7 +53,7 @@ const MediaCarousel = ({
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
+        <CarouselPrevious  />
         <CarouselNext />
       </Carousel>
       <div className="py-2 text-center text-sm text-muted-foreground">

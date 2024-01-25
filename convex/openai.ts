@@ -1,16 +1,14 @@
 "use node"
 
-import OpenAI from "openai"
-import { action } from "./_generated/server"
+import { internalAction } from "./_generated/server"
 import { v } from "convex/values"
 import { internal } from "./_generated/api"
-import { OpenAIStream } from "ai"
 import { waitUntilReadableStreamFinishes } from "@/lib/openai"
+import { ChatService } from "@/lib/services/ChatService/chat-service"
+import { instruction } from "@/lib/services/ChatService/instructions"
 
-const apiKey = process.env.OPENAI_API_KEY
-const openai = new OpenAI({ apiKey })
 
-export const chat = action({
+export const chat = internalAction({
   args: {
     userId: v.string(),
     prompt: v.string(),
@@ -20,41 +18,53 @@ export const chat = action({
       userId,
       role: "assistant"
     })
-    const response = await openai.chat.completions.create({
-      // model: 'gpt-3.5-turbo-16k-0613',
-      model: "gpt-4-1106-preview",
-      stream: true,
-      messages: [
-        {
-          role: "system",
-          content:
-            "Your name is Irja. Answer like it's a chat conversation. Keep sentences to 1-2. Don't be afraid to be silly",
-        },
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-    });
 
-    // Here we define a Promise, that only resolves when onCompletion is called.
-    // Only then, do we return the action.
-
-
-    var content = ""
-    const stream = OpenAIStream(response,
+    const messageHistory = [
       {
-        onToken: async (token: string) => {
-          console.log("onToken", token)
-          content += token
-          await ctx.runMutation(internal.messages.update, {
-            messageId,
-            content
-          })
-        },
+        role: "system",
+        content: instruction,
+      },
+      {
+        role: "user",
+        content: prompt,
+      },
+    ]
+
+    // TODO - Clean this up. It is an absolute, stressed mess.
+
+    const onCompletion = async (completion: string) => {
+      const isFunctionCall = isJSONString(completion)
+      if (isFunctionCall) {
+        const { name, arguments: funcArgs } = JSON.parse(completion)
+        // TODO : Do something with the function call
+
+        console.log("Action recieved", name, funcArgs)
+        return
       }
-    )
+
+      // No function call => Update the content of the message
+      console.log("onCompletion", completion)
+      await ctx.runMutation(internal.messages.update, {
+        messageId,
+        content: completion
+      })
+    }
+    const stream = await ChatService({
+      messages: messageHistory,
+      model: 'gpt-4-1106-preview',
+      max_tokens: 150,
+      onCompletion: onCompletion
+    })
 
     await waitUntilReadableStreamFinishes(stream)
   }
 })
+
+const isJSONString = (str: string): boolean => {
+  try {
+    JSON.parse(str);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

@@ -6,5 +6,5 @@ export default defineSchema({
     userId: v.string(),
     content: v.string(),
     role: v.string(),
-  }).index("byUser", ["userId"]),
+  }).index("byUser", ["userId"])
 });

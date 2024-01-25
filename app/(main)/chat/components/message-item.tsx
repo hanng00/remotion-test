@@ -1,27 +1,19 @@
-import { Message } from "ai";
+import { Spinner } from "@/components/spinner";
+import { Doc } from "@/convex/_generated/dataModel";
 
 interface MessageItemProps {
-  message: Message;
+  message: Doc<"messages">;
 }
 const MessageItem = ({ message }: MessageItemProps) => {
-  if (message.role === "function") {
-    // Custom Display for Function outputs
-    return (
-      <div
-        key={message.id}
-        className="py-2 whitespace-pre-wrap w-full text-green-400 font-bold text-center p-1"
-      >
-        {message.content}
-      </div>
-    );
-  }
-
   return (
-    <div key={message.id} className="py-2 whitespace-pre-wrap">
+    <div key={message._id} className="text-sm py-2 whitespace-pre-wrap">
       <span className="font-bold">
         {message.role === "user" ? "User: " : "Irja: "}
       </span>
       {message.content}
+      {message.content.length == 0 && message.role == "assistant" && (
+        <span> <Spinner size="lg" /></span>
+      )}
     </div>
   );
 };

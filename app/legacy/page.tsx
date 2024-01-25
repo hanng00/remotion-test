@@ -45,6 +45,13 @@ const HomePage = () => {
               </Button>
             );
           })}
+          <Button
+            variant="outline"
+            onClick={() => router.push("/chat")}
+            size="sm"
+          >
+            Back to Chat
+          </Button>
         </div>
       </div>
     </div>

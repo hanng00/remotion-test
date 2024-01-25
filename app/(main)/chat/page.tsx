@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
 import { useEffect, useRef, useState } from "react";
+
 import MediaCarousel from "./components/media-carousel";
-import MessageItem from "@/app/legacy/example-three/components/message-item";
+import MessageItem from "./components/message-item";
 import ChatNavbar from "./components/chat-navbar";
 
 const TEMP_IMAGES = [
@@ -40,10 +41,10 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="container h-dvh flex flex-col space-y-2">
+    <div className="container max-w-2xl h-dvh flex flex-col space-y-2">
       <ChatNavbar />
       {/* Image Display */}
-      <div className="px-4 py-2 h-1/3">
+      <div className="px-4 py-2 w-[90%] mx-auto">
         <MediaCarousel
           currentIndex={currentIndex}
           onIndexChange={handleIndexChange}
