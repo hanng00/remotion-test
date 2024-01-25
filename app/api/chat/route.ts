@@ -1,13 +1,9 @@
-import { openai } from '@/lib/openai';
-import { OpenAIStream, StreamingTextResponse } from 'ai';
-import { instruction } from './instruction';
-import { functions, runServerFunction } from './functions';
-
-
+import { StreamingTextResponse } from 'ai';
+import { ChatService } from '@/lib/services/ChatService/chat-service';
+import { instruction } from '@/lib/services/ChatService/instructions';
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
-
 
 export async function POST(req: Request) {
   // 'data' contains the additional data that you have sent:
@@ -16,37 +12,11 @@ export async function POST(req: Request) {
 
   // Ask OpenAI for a streaming chat completion given the prompt
   const messages = getMessages(messageHistory, data)
-  const response = await openai.chat.completions.create({
-    // model: 'gpt-3.5-turbo-16k-0613',
-    model: "gpt-4-1106-preview",
-    stream: true,
-    max_tokens: 150,
+  const stream = await ChatService({
     messages,
-    functions
-  });
-
-  // Convert the response into a friendly text-stream
-  const stream = OpenAIStream(response,
-    {
-      experimental_onFunctionCall: async (
-        { name, arguments: args },
-        createFunctionCallMessages,
-      ) => {
-        const result = await runServerFunction(name, args);
-        if (!result) return
-
-        const newMessages = createFunctionCallMessages(
-          result
-        );
-        console.log("newMessages", newMessages)
-        return openai.chat.completions.create({
-          messages: [...messages, ...newMessages],
-          stream: true,
-          model: "gpt-4-1106-preview",
-          functions,
-        });
-      }
-    });
+    model: 'gpt-4-1106-preview',
+    max_tokens: 150,
+  })
   // Respond with the stream
   return new StreamingTextResponse(stream);
 }
