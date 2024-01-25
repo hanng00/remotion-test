@@ -1,5 +1,5 @@
 import React from "react";
-import { State } from "../../../lib/helpers/use-rendering";
+import { State } from "../../../../lib/helpers/use-rendering";
 import { Button } from "./Button/Button";
 import { Spacing } from "./Spacing";
 

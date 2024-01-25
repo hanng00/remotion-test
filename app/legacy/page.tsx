@@ -6,19 +6,19 @@ import { useRouter } from "next/navigation";
 
 const LINKS = [
   {
-    href: "/example-one",
+    href: "/legacy/example-one",
     label: "Example One",
   },
   {
-    href: "/example-two",
+    href: "/legacy/example-two",
     label: "Example Two",
   },
   {
-    href: "/example-three",
+    href: "/legacy/example-three",
     label: "Example Three",
   },
   {
-    href: "/example-four",
+    href: "/legacy/example-four",
     label: "Example Four",
   },
 ];
