@@ -1,0 +1,1 @@
+export const imageAnalysisPrompt = "What's in this image?"
