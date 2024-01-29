@@ -14,8 +14,16 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as carousels from "../carousels.js";
+import type * as helpers_asyncMap from "../helpers/asyncMap.js";
+import type * as imageMessages from "../imageMessages.js";
+import type * as messages_listImageDescriptions from "../messages/listImageDescriptions.js";
+import type * as messages_listWithContent from "../messages/listWithContent.js";
 import type * as messages from "../messages.js";
 import type * as openai from "../openai.js";
+import type * as openai_functions_runServerFunction from "../openai_functions/runServerFunction.js";
+import type * as slides from "../slides.js";
+import type * as textMessages from "../textMessages.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -26,8 +34,16 @@ import type * as openai from "../openai.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  carousels: typeof carousels;
+  "helpers/asyncMap": typeof helpers_asyncMap;
+  imageMessages: typeof imageMessages;
+  "messages/listImageDescriptions": typeof messages_listImageDescriptions;
+  "messages/listWithContent": typeof messages_listWithContent;
   messages: typeof messages;
   openai: typeof openai;
+  "openai_functions/runServerFunction": typeof openai_functions_runServerFunction;
+  slides: typeof slides;
+  textMessages: typeof textMessages;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

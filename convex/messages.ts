@@ -1,11 +1,33 @@
 import { v } from "convex/values";
-import { internalMutation, mutation, query } from "./_generated/server"
-import { internal } from "./_generated/api";
+import { internalQuery, mutation, query } from "./_generated/server"
+import { listMessagesWithContent } from "./messages/listWithContent";
 
+/* PUBLIC API */
+export const listWithContent = query({
+  args: {
+    slideId: v.id("slides"),
+  },
+  handler: async (ctx, { slideId }) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+
+    const messagesWithContent = await listMessagesWithContent(
+      ctx.db, slideId, userId
+    )
+    return messagesWithContent
+  }
+})
 
 export const list = query({
-  args: {},
-  handler: async (ctx, args) => {
+  args: {
+    slideId: v.id("slides"),
+  },
+  handler: async (ctx, { slideId }) => {
     const identity = await ctx.auth.getUserIdentity();
 
     if (!identity) {
@@ -16,8 +38,10 @@ export const list = query({
 
     const messages = await ctx.db
       .query("messages")
-      .withIndex("byUser", (q) =>
-        q.eq("userId", userId)
+      .withIndex("byUserSlide", (q) =>
+        q
+          .eq("userId", userId)
+          .eq("slideId", slideId)
       )
       .order("asc")
       .collect()
@@ -26,68 +50,20 @@ export const list = query({
   }
 })
 
-export const send = mutation({
+export const internalListWithContent = internalQuery({
   args: {
-    content: v.string(),
+    userId: v.string(),
+    slideId: v.id("slides"),
+    last: v.number()
   },
-  handler: async (ctx, { content }) => {
-    const identity = await ctx.auth.getUserIdentity();
-
-    if (!identity) {
-      throw new Error("Not authenticated");
-    }
-
-    const userId = identity.subject;
-
-    await ctx.db
-      .insert("messages", {
-        userId,
-        content,
-        role: "user",
-      })
-
-    await ctx.scheduler.runAfter(0, internal.openai.chat, {
-      userId,
-      prompt: content,
-    });
+  handler: async (ctx, { userId, slideId, last }) => {
+    const messagesWithContent = await listMessagesWithContent(
+      ctx.db, slideId, userId
+    )
+    return messagesWithContent.slice(messagesWithContent.length - last, messagesWithContent.length)
   }
 })
 
-export const internalSend = internalMutation({
-  args: {
-    userId: v.string(),
-    role: v.string(),
-    content: v.string(),
-  },
-  handler: async (ctx, { userId, role, content }) => {
-    await ctx.db
-      .insert("messages", {
-        userId,
-        content,
-        role,
-      })
-  }
-})
-
-// Creates a new message.
-export const create = internalMutation({
-  args: {
-    userId: v.string(),
-    role: v.string(),
-  },
-  handler: async (ctx, { userId, role }) => {
-    const messageId = await ctx.db.insert("messages", { userId, role, content: "" });
-    return messageId;
-  },
-})
-
-// Updates a message with a new body.
-export const update = internalMutation({
-  args: {
-    messageId: v.id("messages"),
-    content: v.string(),
-  },
-  handler: async (ctx, { messageId, content }) => {
-    await ctx.db.patch(messageId, { content });
-  },
+export const generateUploadUrl = mutation(async (ctx) => {
+  return await ctx.storage.generateUploadUrl();
 });

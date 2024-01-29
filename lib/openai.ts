@@ -16,11 +16,11 @@ export const waitUntilReadableStreamFinishes = async (
     const handleChunk = async () => {
       const { value, done } = await reader.read();
 
-      onValue(value)
 
       if (done) {
         resolve();
       } else {
+        onValue(value)
         // Continue reading chunks until the stream finishes
         handleChunk();
       }
@@ -30,3 +30,25 @@ export const waitUntilReadableStreamFinishes = async (
     handleChunk().catch(reject);
   });
 }
+
+// Convert readable stream to async generator yielding chunks
+// It returns Uint8Arrays, so we need to type annotate that
+export const streamToAsyncGenerator = async function* (
+  stream: ReadableStream,
+): AsyncGenerator<Uint8Array> {
+  const reader = stream.getReader();
+
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+
+      if (done) {
+        break;
+      }
+
+      yield value;
+    }
+  } finally {
+    reader.releaseLock();
+  }
+};

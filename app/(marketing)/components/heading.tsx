@@ -30,7 +30,7 @@ const Heading = () => {
       )}
       {isAuthenticated && !isLoading && (
         <Button asChild>
-          <Link href="/chat">
+          <Link href="/slides">
             Enter Irja
             <ArrowRight className="h-4 w-4 ml-2" />
           </Link>

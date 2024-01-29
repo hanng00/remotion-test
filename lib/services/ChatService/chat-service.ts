@@ -1,5 +1,5 @@
 import { openai } from "@/lib/openai";
-import { functions, runServerFunction } from "./functions";
+import { functions, runServerFunction } from "./functions/functions";
 import { OpenAIStream } from "ai";
 
 interface ChatServiceProps {

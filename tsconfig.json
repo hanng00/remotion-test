@@ -19,6 +19,7 @@
     "paths": {
       "@/*": ["./*"]
     },
+    "downlevelIteration": true,
     "plugins": [
       {
         "name": "next"
