@@ -1,15 +1,30 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
+import { useMutation } from "convex/react";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-const ChatNavbar = () => {
+interface ChatNavbarProps {
+  slideId: Id<"slides">;
+}
+const ChatNavbar = ({ slideId }: ChatNavbarProps) => {
+  const createCarousel = useMutation(api.carousels.create);
   const router = useRouter();
 
   const handleCreateCarousel = () => {
-    router.push(`/carousels/1234TEST`);
+    const promise = createCarousel({ slideId }).then((carouselId) => {
+      router.push(`/carousels/${carouselId}`);
+    });
+    toast.promise(promise, {
+      loading: "Creating Carousel...",
+      success: "Carousel Created!",
+      error: "Error Creating Carousel",
+    });
   };
 
   return (

@@ -65,6 +65,7 @@ export const useConvexChat = ({
 
 
   return {
+    messages,
     textMessages,
     imageMessages,
     input,
