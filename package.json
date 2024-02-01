@@ -25,6 +25,7 @@
     "@remotion/lambda": "4.0.96",
     "@remotion/paths": "4.0.96",
     "@remotion/player": "4.0.96",
+    "@remotion/preload": "^4.0.104",
     "@remotion/shapes": "4.0.96",
     "@xixixao/uploadstuff": "^0.0.5",
     "ai": "^2.2.31",
@@ -49,7 +50,8 @@
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "vite-tsconfig-paths": "^4.3.1",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zod_utilz": "^0.7.3"
   },
   "devDependencies": {
     "@remotion/eslint-config": "4.0.96",
@@ -61,7 +63,7 @@
     "@types/web": "^0.0.61",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.4.1",
     "eslint": "^8.43.0",
     "eslint-config-next": "^14.1.0",
     "jsdom": "^24.0.0",
