@@ -1,5 +1,6 @@
-import { GraphicsTypeSchema, GraphicsLayerSchema, MediaLayerSchema, MainCompositionSchema } from "./schema";
+// import { GraphicsTypeSchema, GraphicsLayerSchema, MediaLayerSchema, MainCompositionSchema } from "./schema";
 
+import { GraphicsLayerSchema, GraphicsTypeSchema, MediaLayerSchema, MainCompositionSchema } from "@/lib/src/carousel/entites/carousel-config";
 import { z } from "zod";
 
 export type GraphicsType = z.infer<typeof GraphicsTypeSchema>;

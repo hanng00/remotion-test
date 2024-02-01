@@ -1,6 +1,6 @@
 import { Doc, Id } from "@/convex/_generated/dataModel";
 import { IRJA_INSTRUCTION } from "./instructions";
-import { functions } from "./functions/functions";
+import { functions } from "./functions";
 import { openai } from "@/lib/openai";
 import { CreateMessage, JSONValue, OpenAIStream } from "ai";
 
@@ -13,12 +13,6 @@ interface ConvexChatServiceProps {
   runServerFunction: (name: string, args: any) => Promise<JSONValue>;
 }
 
-/* 
-This could probably be merged with the other chat service. But for now,
-I'm keeping it separate to make it easier to understand.
-Solve the specific problem before generalizing.
-
-*/
 export const ConvexChatService = async ({ messages, prompt, runServerFunction, onMessageSave }: ConvexChatServiceProps) => {
   // 1. Construct the chat message object
   const newestMessagesFirst = messages
@@ -41,8 +35,6 @@ export const ConvexChatService = async ({ messages, prompt, runServerFunction, o
       content: prompt,
     },
   ]
-
-  console.log("Chat messages", chatMessages)
 
   var model = "gpt-4-1106-preview"
   var max_tokens = 150

@@ -1,9 +1,19 @@
 // Create new slide
 
-import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+import { internalQuery, mutation, query } from "./_generated/server";
 
 
 /* PUBLIC API */
+
+export const get = internalQuery({
+  args: {
+    slideId: v.id("slides")
+  },
+  handler: async (ctx, { slideId }) => {
+    return await ctx.db.get(slideId)
+  }
+})
 
 export const list = query({
   args: {},

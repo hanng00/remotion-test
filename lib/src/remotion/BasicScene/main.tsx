@@ -1,12 +1,9 @@
+import { MainComposition } from "@/lib/src/carousel/types";
 import { Sequence } from "remotion";
-import { MediaComposition } from "./compositions/media-composition";
-import { GraphicsComposition } from "./compositions/graphics-composition";
-import { VIDEO_FPS } from "./types/constants";
-import { WatermarkComposition } from "./compositions/watermark-composition";
-import { MainComposition } from "./types/types";
 import { OldCarouselOverlay } from "./components/old-carousel-overlay";
-
-const CAROUSEL_LENGTH_IN_FPS = VIDEO_FPS * 15;
+import { GraphicsComposition } from "./compositions/graphics-composition";
+import { MediaComposition } from "./compositions/media-composition";
+import { WatermarkComposition } from "./compositions/watermark-composition";
 
 export const Main = ({
   media_composition,
@@ -14,14 +11,10 @@ export const Main = ({
 }: MainComposition) => {
   return (
     <>
-      <Sequence
-        name="Media Composition"
-        from={0}
-        durationInFrames={CAROUSEL_LENGTH_IN_FPS}
-      >
+      <Sequence name="Media Composition">
         <MediaComposition
-          user_photos={media_composition.user_photos}
-          stock_video={media_composition.stock_video}
+          user_media={media_composition.user_media}
+          stock_media={media_composition.stock_media}
           voice_over={media_composition.voice_over}
           background_music={media_composition.background_music}
         />
@@ -32,8 +25,6 @@ export const Main = ({
         style={{
           zIndex: 10,
         }}
-        from={0}
-        durationInFrames={CAROUSEL_LENGTH_IN_FPS}
       >
         <GraphicsComposition graphics={graphics_composition} />
       </Sequence>
@@ -43,8 +34,6 @@ export const Main = ({
         style={{
           zIndex: 20,
         }}
-        from={0}
-        durationInFrames={Infinity}
       >
         <OldCarouselOverlay />
       </Sequence>

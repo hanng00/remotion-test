@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import HeaderNavbar from "./components/header-navbar";
 import SlidesFeed from "./components/slides-feed";
-import FooterNavbar from "./components/footer-navbar";
+import FooterNavbar from "../../../components/footer-navbar";
 import { Spinner } from "@/components/spinner";
 
 const SlidesPage = () => {
@@ -36,7 +36,7 @@ const SlidesPage = () => {
   }
 
   return (
-    <div className="container flex flex-col h-full">
+    <div className="container flex flex-col h-dvh">
       <HeaderNavbar />
 
       <div className="w-full flex-grow overflow-y-scroll">

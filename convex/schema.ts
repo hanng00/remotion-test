@@ -1,5 +1,6 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
+import { carouselConfigValidator, narrationScriptValidator } from "./validators/carousels";
 
 export default defineSchema({
   slides: defineTable({
@@ -52,12 +53,23 @@ export default defineSchema({
     slideId: v.id("slides"),
     status: v.union(
       v.literal("loading"),
+      v.literal("writing"),
+      v.literal("producing"),
       v.literal("completed")
     ),
-    narrationScript: v.optional(v.string()),
-    carouselConfig: v.optional(v.object({}))
+    narrationScriptId: v.optional(v.id("narrationScripts")),
+    carouselConfigId: v.optional(v.id("carouselConfigs"))
   })
     .index("byUserSlides", ["userId", "slideId"])
     .index("byUser", ["userId"])
     .index("bySlide", ["slideId"]),
+  narrationScripts: defineTable({
+    carouselId: v.id("carousels"),
+    data: narrationScriptValidator,
+  })
+    .index("byCarousel", ["carouselId"]),
+  carouselConfigs: defineTable({
+    carouselId: v.id("carousels"),
+    data: carouselConfigValidator,
+  })
 });

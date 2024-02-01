@@ -32,6 +32,12 @@ export const listMessagesWithContent = async (
       }
     }
   )
-  const messageWithContent = messagesWithMaybeContent.filter((msg) => msg.message !== null && msg.message !== undefined)
+  const messageWithContent = messagesWithMaybeContent.flatMap(message => {
+    if (!message.message) return []
+    return [{
+      ...message,
+      message: message.message
+    }]
+  })
   return messageWithContent
 }

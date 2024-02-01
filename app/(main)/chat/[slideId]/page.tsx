@@ -1,14 +1,14 @@
 "use client";
 
-import MediaCarousel from "./components/media-carousel";
-import ChatNavbar from "./components/chat-navbar";
-import { useConvexChat } from "./hooks/useConvexChat";
-import { useMediaCarousel } from "./hooks/useMediaCarousel";
+import { Id } from "@/convex/_generated/dataModel";
 import ChatFeed from "./components/chat-feed";
 import ChatInput from "./components/chat-input";
-import { useFunctionCallHandler } from "./hooks/useFunctionCallHandler";
-import { Id } from "@/convex/_generated/dataModel";
+import ChatNavbar from "./components/chat-navbar";
+import MediaCarousel from "./components/media-carousel";
 import UploadMediaButton from "./components/upload-media-button";
+import { useConvexChat } from "./hooks/useConvexChat";
+import { useFunctionCallHandler } from "./hooks/useFunctionCallHandler";
+import { useMediaCarousel } from "./hooks/useMediaCarousel";
 
 interface ChatPageProps {
   params: {
@@ -35,7 +35,7 @@ const ChatPage = ({ params }: ChatPageProps) => {
 
   return (
     <div className="container max-w-2xl h-dvh flex flex-col space-y-2">
-      <ChatNavbar />
+      <ChatNavbar slideId={params.slideId} />
       <div className="px-4 w-[90%] mx-auto h-1/3">
         <MediaCarousel
           mediaIndex={mediaIndex}
