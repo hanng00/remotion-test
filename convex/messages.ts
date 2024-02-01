@@ -54,12 +54,15 @@ export const internalListWithContent = internalQuery({
   args: {
     userId: v.string(),
     slideId: v.id("slides"),
-    last: v.number()
+    last: v.optional(v.number())
   },
   handler: async (ctx, { userId, slideId, last }) => {
     const messagesWithContent = await listMessagesWithContent(
       ctx.db, slideId, userId
     )
+    if (!last) {
+      return messagesWithContent
+    }
     return messagesWithContent.slice(messagesWithContent.length - last, messagesWithContent.length)
   }
 })

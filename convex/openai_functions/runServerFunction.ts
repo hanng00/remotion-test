@@ -14,7 +14,6 @@ export class OpenAIFunctionCallManager {
     this.actionCtx = actionCtx
   }
 
-
   private creationTimeToDateString = (creationTime: number) => {
     const date = new Date(creationTime)
     return date.toLocaleDateString()
