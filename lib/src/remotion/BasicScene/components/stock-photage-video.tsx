@@ -1,16 +1,15 @@
 import { AbsoluteFill, Video } from "remotion";
-import { MediaLayer } from "@/lib/src/remotion/BasicScene/types/types";
 
-
-
-export const StockPhotageVideo = ({ src }: MediaLayer) => {
-
+interface StockPhoageVideoProps {
+  src: string;
+}
+export const StockPhotageVideo = ({ src }: StockPhoageVideoProps) => {
   return (
     <AbsoluteFill
       style={{
         flex: 1,
         alignItems: "center",
-        justifyContent: "center", 
+        justifyContent: "center",
       }}
     >
       <Video
@@ -20,7 +19,7 @@ export const StockPhotageVideo = ({ src }: MediaLayer) => {
           minHeight: "100%",
           maxHeight: "fit-content",
           minWidth: "100%",
-          maxWidth: "fit-content"
+          maxWidth: "fit-content",
         }}
         src={src}
       />

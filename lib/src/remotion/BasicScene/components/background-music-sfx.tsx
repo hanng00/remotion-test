@@ -9,5 +9,5 @@ export const BackgroundMusicSFX = ({ src }: BackgroundMusicSFXProps) => {
 
   src = "https://d1lwpr1oyt2a5u.cloudfront.net" + "/ES_Calmar_Adios.mp3";
 
-  return <Audio volume={0.6} name="Background Music" loop src={src} />;
+  return <Audio volume={0.4} name="Background Music" loop src={src} />;
 };

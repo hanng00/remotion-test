@@ -1,8 +1,12 @@
 import { Sequence } from "remotion";
 import { Audio } from "remotion";
-import { MediaLayer } from "../types/types";
 
-export const VoiceOverSFX = ({ src, start_time }: MediaLayer) => {
+interface VoiceOverSFXProps {
+  src: string;
+  start_time?: number;
+}
+
+export const VoiceOverSFX = ({ src, start_time }: VoiceOverSFXProps) => {
   return (
     <Sequence
       name="Voice Over Seq."

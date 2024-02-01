@@ -8,13 +8,18 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { MediaLayer } from "../types/types";
+
+interface ImageWithFadeInProps {
+  src: string;
+  start_time?: number;
+  end_time?: number;
+}
 
 export const ImageWithFadeIn = ({
   src,
   start_time = 0,
   end_time = Infinity,
-}: MediaLayer) => {
+}: ImageWithFadeInProps) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const upAnimation = spring({
@@ -38,6 +43,7 @@ export const ImageWithFadeIn = ({
     return 0.0;
   })();
 
+
   return (
     <AbsoluteFill
       style={{
@@ -50,7 +56,7 @@ export const ImageWithFadeIn = ({
         about="User Photo"
         style={{
           width: "100%",
-          maxWidth: "80%",
+          maxWidth: "90%",
           height: "auto",
           margin: "auto",
           transform: `scale(${randomScale + fadeInScale})`,
