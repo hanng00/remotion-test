@@ -1,10 +1,10 @@
 import OpenAI from "openai";
 
-import { zu } from 'zod_utilz'
+import { zu } from 'zod_utilz';
 
-import { ChatLog, ExportedImageMessage, ExportedTextMessage } from "../types/chat-log";
 import { ReponseNarrationScriptSchema } from "../entites/narration-script";
 import { NarrationScript } from "../types";
+import { ChatLog, ExportedImageMessage, ExportedTextMessage } from "../types/chat-log";
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -107,7 +107,7 @@ const getInstructionMessage = () => {
   # Task
   - Develop a presentation script reminiscing the memory from the user-assistant chat log interview. Never mention the actual chat log.
   - The media and narration will be shown side by side. Don't state what's obvious from the media in the narration.
-  - Aim for brevity, targeting around 150 words.
+  - Keep the response under 500 words. Hard limit. Even for long memories, keep it concise.
 
   # Rhetorical Style
   - Focus on the context details provided by the user in the chat. Mention names, people, places, traditions, jokes, from the user.
@@ -161,7 +161,7 @@ const generateNarrationScript = async (prompt: string, openai: OpenAI): Promise<
   const response = await openai.chat.completions.create({
     model: "gpt-4-1106-preview",
     messages,
-    max_tokens: 500,
+    max_tokens: 800,
     response_format: { type: "json_object" }
   })
 
